@@ -21,32 +21,23 @@ Texture backgroundTexture;
 
 if (!backgroundTexture.loadFromFile("assets/cleargrass.jpeg"))
         cout << "Background image could not be loaded." << endl;
-Texture gameOverTexture;//
-Sprite gameOverSprite;//
-//
+Texture gameOverTexture;
+Sprite gameOverSprite;
 void loadGameOverImage()
-{
-    if (!gameOverTexture.loadFromFile("assets/gameover.png"))
+{if (!gameOverTexture.loadFromFile("assets/gameover.png"))
     { cout << "Failed to load Game Over image" << endl;}
-    
     else
-    {
-        gameOverSprite.setTexture(gameOverTexture);
-
-        gameOverSprite.setScale(
+    {gameOverSprite.setTexture(gameOverTexture);
+      gameOverSprite.setScale(
             800.0f / gameOverTexture.getSize().x,
-            600.0f / gameOverTexture.getSize().y
-        );
+            600.0f / gameOverTexture.getSize().y);
     }
 }
 bool isOnSnake(int x, int y) {
     for (int i = 0; i < snakeLength; i++) {
         if (snake[i].x == x && snake[i].y == y)
-            return true;
-    }
-    return false;
-}
-
+            return true;}
+    return false;}
 void placeFood() {
     // Choose a random square until it is not occupied by the snake.
     do {
