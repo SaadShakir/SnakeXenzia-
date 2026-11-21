@@ -136,16 +136,6 @@ void updateGame() {
     {
         moveSnake();
         movementClock.restart();
-    }}
-
-void updateGame() {
-    if (gameOver == true)
-        return;
-
-    // The snake moves once every 0.12 seconds.
-    if (movementClock.getElapsedTime().asSeconds() >= 0.12f) {
-        moveSnake();
-        movementClock.restart();
     }
 }
 
