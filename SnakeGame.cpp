@@ -125,12 +125,15 @@ void moveSnake() {
     }
 }
 
-void updateGame() {
-    if (gameOver == true)
-        return;
+float getMovementInterval() {
+    float interval = 0.12f - (snakeLength - 3) * 0.004f;
+    if (interval < 0.045f){interval = 0.045f;}
+    return interval;}
 
-    // The snake moves once every 0.12 seconds.
-    if (movementClock.getElapsedTime().asSeconds() >= 0.12f) {
+void updateGame() {
+    if (gameOver == true){return;}      
+    if (movementClock.getElapsedTime().asSeconds() >= getMovementInterval())
+    {
         moveSnake();
         movementClock.restart();
     }
