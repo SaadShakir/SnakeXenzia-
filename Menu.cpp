@@ -1,13 +1,13 @@
 #include "Menu.h"
-
-Menu::Menu(sf::Font& gameFont) : font(gameFont)
+using namespace sf;
+Menu::Menu(Font& gameFont) : font(gameFont)
 {
     selectedOption = 0;
 
     title.setFont(font);
     title.setString("SNAKE XENZIA");
     title.setCharacterSize(46);
-    title.setFillColor(sf::Color::Green);
+    title.setFillColor(Color::Green);
     title.setPosition(220, 100);
 
     options[0].setString("Play Game");
@@ -30,23 +30,23 @@ void Menu::updateOptionColors()
     {
         if (i == selectedOption)
         {
-            options[i].setFillColor(sf::Color::Yellow);
+            options[i].setFillColor(Color::Yellow);
         }
         else
         {
-            options[i].setFillColor(sf::Color::White);
+            options[i].setFillColor(Color::White);
         }
     }
 }
 
-MenuChoice Menu::handleEvent(const sf::Event& event)
+MenuChoice Menu::handleEvent(const Event& event)
 {
-    if (event.type != sf::Event::KeyPressed)
+    if (event.type !=Event::KeyPressed)
     {
         return MenuChoice::None;
     }
 
-    if (event.key.code == sf::Keyboard::Up)
+    if (event.key.code == Keyboard::Up)
     {
         selectedOption--;
 
@@ -57,7 +57,7 @@ MenuChoice Menu::handleEvent(const sf::Event& event)
 
         updateOptionColors();
     }
-    else if (event.key.code == sf::Keyboard::Down)
+    else if (event.key.code ==Keyboard::Down)
     {
         selectedOption++;
 
@@ -68,7 +68,7 @@ MenuChoice Menu::handleEvent(const sf::Event& event)
 
         updateOptionColors();
     }
-    else if (event.key.code == sf::Keyboard::Enter)
+    else if (event.key.code == Keyboard::Enter)
     {
         if (selectedOption == 0)
         {
@@ -87,9 +87,9 @@ MenuChoice Menu::handleEvent(const sf::Event& event)
     return MenuChoice::None;
 }
 
-void Menu::draw(sf::RenderWindow& window)
+void Menu::draw(RenderWindow& window)
 {
-    window.clear(sf::Color(25, 25, 35));
+    window.clear(Color(25, 25, 35));
 
     window.draw(title);
 
