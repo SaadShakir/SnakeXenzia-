@@ -33,6 +33,37 @@ void loadGameOverImage()
             600.0f / gameOverTexture.getSize().y);
     }
 }
+void drawGameOver(RenderWindow& window, Font& font)
+{
+    window.clear();
+    // Draw the Game Over image
+    window.draw(gameOverSprite);
+    // Display the score
+Text scoreText;
+scoreText.setFont(font);
+scoreText.setString(to_string(score));
+scoreText.setCharacterSize(30);
+scoreText.setFillColor(Color::White);
+scoreText.setPosition(495, 215);
+        
+    window.draw(scoreText);
+// Display the high score
+Text highScoreText;
+highScoreText.setFont(font);
+highScoreText.setString(to_string(highScore));
+highScoreText.setCharacterSize(30);
+highScoreText.setFillColor(Color::White);
+highScoreText.setPosition(510, 275);
+
+    window.draw(highScoreText);
+    window.display();
+}
+
+bool isGameOver()
+{
+    return gameOver;
+}
+
 bool isOnSnake(int x, int y) {
     for (int i = 0; i < snakeLength; i++) {
         if (snake[i].x == x && snake[i].y == y)
