@@ -17,6 +17,10 @@ Point food;
 int score = 0;
 bool gameOver = false;
 Clock movementClock;
+Texture backgroundTexture;
+
+if (!backgroundTexture.loadFromFile("assets/cleargrass.jpeg"))
+        cout << "Background image could not be loaded." << endl;
 
 bool isOnSnake(int x, int y) {
     for (int i = 0; i < snakeLength; i++) {
@@ -125,12 +129,15 @@ void moveSnake() {
     }
 }
 
-void updateGame() {
-    if (gameOver == true)
-        return;
+float getMovementInterval() {
+    float interval = 0.12f - (snakeLength - 3) * 0.004f;
+    if (interval < 0.045f){interval = 0.045f;}
+    return interval;}
 
-    // The snake moves once every 0.12 seconds.
-    if (movementClock.getElapsedTime().asSeconds() >= 0.12f) {
+void updateGame() {
+    if (gameOver == true){return;}      
+    if (movementClock.getElapsedTime().asSeconds() >= getMovementInterval())
+    {
         moveSnake();
         movementClock.restart();
     }
@@ -138,11 +145,18 @@ void updateGame() {
 
 void drawGame(RenderWindow& window, Font& font) {
     window.clear(Color(20, 20, 25));
+
+    Sprite background;
+    background.setTexture(backgroundTexture);
+    background.setPosition(0, 40);
+    background.setScale(800.0f/backgroundTexture.getSize().x, 560.0f/backgroundTexture.getSize().y);
+    window.draw(background);
+
 //Drawing  the  boundary
     RectangleShape boundary;
-        boundary.setSize(Vector2f(columns * cellSize, rows * cellSize));
-        boundary.setPosition(0, 40);
-         boundary.setFillColor(Color::Transparent);
+    boundary.setSize(Vector2f(columns*cellSize, rows*cellSize));
+    boundary.setPosition(0, 40);
+    boundary.setFillColor(Color::Transparent);
     boundary.setOutlineColor(Color::Red);
     boundary.setOutlineThickness(2);
     window.draw(boundary);
