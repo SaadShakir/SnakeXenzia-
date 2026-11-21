@@ -138,7 +138,14 @@ void updateGame() {
 
 void drawGame(RenderWindow& window, Font& font) {
     window.clear(Color(20, 20, 25));
-
+//Drawing boundary
+    RectangleShape boundary;
+    boundary.setSize(Vector2f(columns * cellSize, rows * cellSize));
+    boundary.setPosition(0, 40);
+    boundary.setFillColor(Color::Transparent);
+    boundary.setOutlineColor(Color::Red);
+    boundary.setOutlineThickness(2);
+    window.draw(boundary);
     Text scoreText;
     scoreText.setFont(font);
     scoreText.setString("Score: " + to_string(score));
