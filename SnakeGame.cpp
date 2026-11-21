@@ -125,6 +125,19 @@ void moveSnake() {
     }
 }
 
+float getMovementInterval() {
+    float interval = 0.12f - (snakeLength - 3) * 0.004f;
+    if (interval < 0.045f){interval = 0.045f;}
+    return interval;}
+
+void updateGame() {
+    if (gameOver == true){return;}      
+    if (movementClock.getElapsedTime().asSeconds() >= getMovementInterval())
+    {
+        moveSnake();
+        movementClock.restart();
+    }}
+
 void updateGame() {
     if (gameOver == true)
         return;
