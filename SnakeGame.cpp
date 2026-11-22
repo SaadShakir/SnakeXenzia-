@@ -15,6 +15,7 @@ int directionX = 1;
 int directionY = 0;
 Point food;
 int score = 0;
+int highScore = 0;
 bool gameOver = false;
 Clock movementClock;
 Texture backgroundTexture;
@@ -33,6 +34,75 @@ void loadGameOverImage()
             600.0f / gameOverTexture.getSize().y);
     }
 }
+void drawGameOver(RenderWindow& window, Font& font)
+{
+    window.clear();
+    // Draw the Game Over image
+    window.draw(gameOverSprite);
+    // Display the score
+Text scoreText;
+scoreText.setFont(font);
+scoreText.setString(to_string(score));
+scoreText.setCharacterSize(30);
+scoreText.setFillColor(Color::White);
+scoreText.setPosition(495, 215);
+        
+    window.draw(scoreText);
+// Display the high score
+Text highScoreText;
+highScoreText.setFont(font);
+highScoreText.setString(to_string(highScore));
+highScoreText.setCharacterSize(30);
+highScoreText.setFillColor(Color::White);
+highScoreText.setPosition(510, 275);
+
+    window.draw(highScoreText);
+    window.display();
+}
+
+bool isGameOver()
+{
+    return gameOver;
+}
+void loadHighScore()
+{
+    ifstream scoreFile;
+    scoreFile.open("highscore.txt");
+    if (!scoreFile)
+    {
+        highScore = 0;
+    }
+    else
+    {
+        scoreFile >> highScore;
+        scoreFile.close();
+    }
+}
+
+void saveHighScore()
+{
+    ofstream scoreFile;
+    scoreFile.open("highscore.txt");
+    if (!scoreFile)
+    {
+        cout << "File cannot be opened" << endl;
+    }
+    else
+    {
+        scoreFile << highScore;
+        scoreFile.close();
+    }
+}
+
+void checkHighScore()
+{
+    if (score > highScore)
+    {
+        highScore = score;
+        saveHighScore();
+    }
+}
+
 bool isOnSnake(int x, int y) {
     for (int i = 0; i < snakeLength; i++) {
         if (snake[i].x == x && snake[i].y == y)
@@ -170,7 +240,8 @@ void drawGame(RenderWindow& window, Font& font) {
     window.draw(boundary);
     Text scoreText;
     scoreText.setFont(font);
-    scoreText.setString("Score: " + to_string(score));
+    scoreText.setString(
+    "Score: " + to_string(score) + "    High Score: " + to_string(highScore));
     scoreText.setCharacterSize(22);
     scoreText.setFillColor(Color::White);
     scoreText.setPosition(10, 8);
@@ -192,17 +263,6 @@ void drawGame(RenderWindow& window, Font& font) {
     foodBlock.setPosition(food.x * cellSize, food.y * cellSize + 40);
     foodBlock.setFillColor(Color::Red);
     window.draw(foodBlock);
-
-    if (gameOver == true) {
-        Text message;
-        message.setFont(font);
-        message.setString("GAME OVER\nFinal Score: " + to_string(score) +
-                          "\nPress R to restart\nPress ESC for menu");
-        message.setCharacterSize(28);
-        message.setFillColor(Color::Yellow);
-        message.setPosition(210, 235);
-        window.draw(message);
-    }
 
     window.display();
 }

@@ -12,3 +12,6 @@ void resetGame();
 void handleGameInput(Event event);
 void updateGame();
 void drawGame(RenderWindow& window, Font& font);
+void loadGameOverImage();
+void drawGameOver(RenderWindow& window, Font& font);
+bool isGameOver();
