@@ -1,6 +1,8 @@
 #include "SnakeGame.h"
 #include <cstdlib>
 #include <string>
+#include <fstream>
+#include <iostream>
 using namespace sf;
 using namespace std;
 
@@ -23,6 +25,10 @@ Sprite appleSprite;
 Texture instructionsTexture;
 Sprite instructionsBackground;
 Texture backgroundTexture;
+Texture snakeHeadTexture;
+Texture snakeBodyTexture;
+Texture skinMenuTexture;
+Sprite skinMenuBackground;
 void loadInstructionsBackground()
 {
     if (!instructionsTexture.loadFromFile("assets/Instructions.png"))
@@ -55,6 +61,47 @@ void loadAppleTexture()
     }
 
     appleSprite.setTexture(appleTexture);
+}
+void drawSkinPreview(RenderWindow& window)
+{ window.clear();
+
+    // Draw the skin menu background
+    window.draw(skinMenuBackground);
+
+    Sprite previewSnake;
+
+    // Draw body segments
+    previewSnake.setTexture(snakeBodyTexture);
+    previewSnake.setScale(3.0f, 3.0f);
+
+    previewSnake.setPosition(280, 270);
+    window.draw(previewSnake);
+
+    previewSnake.setPosition(340, 270);
+    window.draw(previewSnake);
+
+    previewSnake.setPosition(400, 270);
+    window.draw(previewSnake);
+
+    // Draw head
+    previewSnake.setTexture(snakeHeadTexture);
+    previewSnake.setScale(3.0f, 3.0f);
+    previewSnake.setPosition(460, 270);
+    window.draw(previewSnake);
+
+    window.display();
+}
+
+void loadSkinMenuBackground()
+{
+    skinMenuTexture.loadFromFile("assets/skinmenu.png");
+
+    skinMenuBackground.setTexture(skinMenuTexture);
+
+    skinMenuBackground.setScale(
+        800.0f / skinMenuTexture.getSize().x,
+        600.0f / skinMenuTexture.getSize().y
+    );
 }
 if (!backgroundTexture.loadFromFile("assets/cleargrass.jpeg"))
         cout << "Background image could not be loaded." << endl;
@@ -100,6 +147,11 @@ bool isGameOver()
 {
     return gameOver;
 }
+int selectedSkin = 0;
+void setSelectedSkin(int skin) {
+    selectedSkin = skin;
+}
+
 void loadHighScore()
 {
     ifstream scoreFile;
