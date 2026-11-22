@@ -77,4 +77,42 @@ void drawMenu(RenderWindow& window, Font& font)
 
     window.display();
 }
+int selectedSkinOption = 0;
+int handleSkinInput(Event event)
+{
+     if (event.type != Event::KeyPressed)
+        return -1;
+
+    if (event.key.code == Keyboard::Left)
+    {
+        selectedSkinOption--;
+
+        if (selectedSkinOption < 0)
+            selectedSkinOption = 3;
+
+        setSelectedSkin(selectedSkinOption);
+        loadSnakeTextures();
+    }
+
+    else if (event.key.code == Keyboard::Right)
+    {
+        selectedSkinOption++;
+
+        if (selectedSkinOption > 3)
+            selectedSkinOption = 0;
+
+        setSelectedSkin(selectedSkinOption);
+        loadSnakeTextures();
+    }
+
+    else if (event.key.code == Keyboard::Enter)
+    {
+        return selectedSkinOption;
+    }
+
+    return -1;}
+
+
+
+
 
