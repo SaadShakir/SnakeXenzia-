@@ -8,30 +8,6 @@
 using namespace sf;
 using namespace std;
 
-void drawInstructions(RenderWindow& window, Font& font) {
-    window.clear(Color(25, 25, 35));
-    Text heading;
-    heading.setFont(font);
-    heading.setString("HOW TO PLAY");
-    heading.setCharacterSize(34);
-    heading.setFillColor(Color::Yellow);
-    heading.setPosition(285, 90);
-    window.draw(heading);
-
-    Text instructions;
-    instructions.setFont(font);
-    instructions.setString(
-        "Use the arrow keys to move the snake.\n"
-        "Eat the red food to grow and earn points.\n"
-        "Do not hit the walls or your own body.\n\n"
-        "Press ESC to return to the main menu."
-    );
-    instructions.setCharacterSize(22);
-    instructions.setFillColor(Color::White);
-    instructions.setPosition(145, 210);
-    window.draw(instructions);
-    window.display();
-}
 
 int main() {
     srand(time(0));
