@@ -250,6 +250,7 @@ void resetGame() {
     directionX = 1;
     directionY = 0;
     score = 0;
+    loadHighScore();
     gameOver = false;
     placeFood();
     movementClock.restart();
@@ -290,6 +291,7 @@ void moveSnake() {
     if (newHead.x < 0 || newHead.x >= columns ||
         newHead.y < 0 || newHead.y >= rows) {
         gameOver = true;
+        checkHighScore();
         return;
     }
 
@@ -306,6 +308,7 @@ void moveSnake() {
     for (int i = 0; i < lastPartToCheck; i++) {
         if (newHead.x == snake[i].x && newHead.y == snake[i].y) {
             gameOver = true;
+            checkHighScore();
             return;
         }
     }
