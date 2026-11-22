@@ -45,6 +45,8 @@ int main() {
     }
     
     loadGameOverImage();
+    loadAppleTexture();
+loadInstructionsBackground();
     int currentScreen = 0; // 0 = menu, 1 = instructions, 2 = game
 
    while (window.isOpen()) {
