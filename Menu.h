@@ -1,31 +1,14 @@
-#ifndef MENU_H
-#define MENU_H
-
 #include <SFML/Graphics.hpp>
+using namespace sf;
+using namespace std;
 
-enum class MenuChoice
-{
-    None,
-    Play,
-    Instructions,
-    Exit
-};
+// Numbers returned to main.cpp for the selected menu option.
+const int MENU_NOTHING = 0;
+const int MENU_PLAY = 1;
+const int MENU_SKINS = 2;
+const int MENU_MAPS = 3;
+const int MENU_INSTRUCTIONS = 4;
+const int MENU_EXIT = 5;
 
-class Menu
-{
-private:
-    sf::Font& font;
-    sf::Text title;
-    sf::Text options[3];
-    int selectedOption;
-
-    void updateOptionColors();
-
-public:
-    Menu(sf::Font& gameFont);
-
-    MenuChoice handleEvent(const sf::Event& event);
-    void draw(sf::RenderWindow& window);
-};
-
-#endif
+void drawMapMenu(RenderWindow& window, Font& font);
+void loadMenuImage();
