@@ -347,7 +347,7 @@ void updateGame() {
 }
 
 void drawGame(RenderWindow& window, Font& font) {
-    window.clear(Color(20, 20, 25));
+    window.clear();
 
     Sprite background;
     background.setTexture(backgroundTexture);
