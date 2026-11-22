@@ -151,6 +151,40 @@ int selectedSkin = 0;
 void setSelectedSkin(int skin) {
     selectedSkin = skin;
 }
+void loadSnakeTextures() {   
+    if (selectedSkin == 0)
+    {
+        snakeHeadTexture.loadFromFile("assets/head.png");
+        snakeBodyTexture.loadFromFile("assets/body.png");
+    }
+    else if (selectedSkin == 1)
+    {
+        snakeHeadTexture.loadFromFile("assets/orangehead.png");
+        snakeBodyTexture.loadFromFile("assets/orangebody.png");
+    }
+    else if (selectedSkin == 2)
+    {
+        snakeHeadTexture.loadFromFile("assets/bluesnakehead.png");
+        snakeBodyTexture.loadFromFile("assets/bluesnakebody.png");
+    }
+    else if (selectedSkin == 3)
+    {
+        snakeHeadTexture.loadFromFile("assets/pinksnakehead.png");
+        snakeBodyTexture.loadFromFile("assets/pinksnakebody.png");
+    }
+    if (selectedMap == 0)
+    {
+    backgroundTexture.loadFromFile("assets/grass.jpeg");
+    }
+    else if (selectedMap == 1)
+    {
+    backgroundTexture.loadFromFile("assets/desert.jpeg");
+    }
+    else if (selectedMap == 2)
+    {
+    backgroundTexture.loadFromFile("assets/retro.jpeg");
+    }
+}
 
 void loadHighScore()
 {
