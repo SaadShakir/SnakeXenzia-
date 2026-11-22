@@ -43,7 +43,8 @@ int main() {
         cout << "Font file was not found. Check the assets folder." << endl;
         return 1;
     }
-
+    
+    loadGameOverImage();
     int currentScreen = 0; // 0 = menu, 1 = instructions, 2 = game
 
    while (window.isOpen()) {
@@ -131,7 +132,7 @@ int main() {
             currentScreen = 4;
             }
             drawGame(window, font);
-        }//
+        }
         else if (currentScreen == 4)
 {
     drawGameOver(window, font);
