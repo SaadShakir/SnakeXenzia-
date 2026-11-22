@@ -88,7 +88,7 @@ int main() {
                 loadSnakeTextures();
                 currentScreen = 0;
                 }
-            }//
+            }
             else if (currentScreen == 4)
             {
         if (event.type == Event::KeyPressed)
@@ -100,7 +100,7 @@ int main() {
            }
         }
            }
-           else if (currentScreen == 5)
+            else if (currentScreen == 5)
 {
     int mapChoice = handleMapInput(event);
 
@@ -134,13 +134,13 @@ int main() {
             drawGame(window, font);
         }
         else if (currentScreen == 4)
-{
-    drawGameOver(window, font);
-}
-else if (currentScreen == 5)
-{
-      drawMapPreview(window);
-}
+        {
+        drawGameOver(window, font);
+        }
+        else if (currentScreen == 5)
+        {
+        drawMapPreview(window);
+        }
     }
 
     return 0;
