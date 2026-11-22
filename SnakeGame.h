@@ -15,3 +15,6 @@ void drawGame(RenderWindow& window, Font& font);
 void loadGameOverImage();
 void drawGameOver(RenderWindow& window, Font& font);
 bool isGameOver();
+void loadAppleTexture();
+void loadInstructionsBackground();
+void drawInstructions(RenderWindow& window);
