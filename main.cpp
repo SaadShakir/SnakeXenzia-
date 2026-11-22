@@ -22,7 +22,12 @@ int main() {
     
     loadGameOverImage();
     loadAppleTexture();
-loadInstructionsBackground();
+    loadInstructionsBackground();
+    loadSnakeTextures();
+    loadMenuImage();
+    loadSkinMenuBackground();
+    loadMapMenuBackground();
+    loadMapPreviewImages();
     int currentScreen = 0; // 0 = menu, 1 = instructions, 2 = game
 
    while (window.isOpen()) {
