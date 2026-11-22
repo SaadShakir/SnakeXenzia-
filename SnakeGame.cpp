@@ -18,8 +18,44 @@ int score = 0;
 int highScore = 0;
 bool gameOver = false;
 Clock movementClock;
+Texture appleTexture;
+Sprite appleSprite;
+Texture instructionsTexture;
+Sprite instructionsBackground;
 Texture backgroundTexture;
+void loadInstructionsBackground()
+{
+    if (!instructionsTexture.loadFromFile("assets/Instructions.png"))
+    {
+        cout << "Failed to load Instructions image!" << endl;
+    }
+    else
+    {
+        instructionsBackground.setTexture(instructionsTexture);
 
+        instructionsBackground.setScale(
+            800.0f / instructionsTexture.getSize().x,
+            600.0f / instructionsTexture.getSize().y
+        );
+    }
+}
+void drawInstructions(RenderWindow& window)
+{
+    window.clear();
+
+    window.draw(instructionsBackground);
+
+    window.display();
+}
+void loadAppleTexture()
+{
+    if (!appleTexture.loadFromFile("assets/RedApple.png"))
+    {
+        cout << "Apple image failed to load!" << endl;
+    }
+
+    appleSprite.setTexture(appleTexture);
+}
 if (!backgroundTexture.loadFromFile("assets/cleargrass.jpeg"))
         cout << "Background image could not be loaded." << endl;
 Texture gameOverTexture;
@@ -263,6 +299,7 @@ void drawGame(RenderWindow& window, Font& font) {
     foodBlock.setPosition(food.x * cellSize, food.y * cellSize + 40);
     foodBlock.setFillColor(Color::Red);
     window.draw(foodBlock);
-
+appleSprite.setPosition(food.x * cellSize, food.y * cellSize+40);
+    window.draw(appleSprite);
     window.display();
 }
