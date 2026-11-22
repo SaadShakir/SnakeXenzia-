@@ -12,3 +12,7 @@ const int MENU_EXIT = 5;
 
 void drawMapMenu(RenderWindow& window, Font& font);
 void loadMenuImage();
+int handleMenuInput(Event event);
+void drawMenu(RenderWindow& window, Font& font);
+int handleSkinInput(Event event);
+void drawSkinMenu(RenderWindow& window, Font& font);
