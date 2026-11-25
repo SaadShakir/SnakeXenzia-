@@ -1,4 +1,6 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+
 using namespace sf;
 using namespace std;
 
@@ -10,10 +12,16 @@ const int MENU_MAPS = 3;
 const int MENU_INSTRUCTIONS = 4;
 const int MENU_EXIT = 5;
 
-void drawMapMenu(RenderWindow& window, Font& font);
-void loadMenuImage();
-int handleMenuInput(Event event);
+int handleMenuInput(Event event, RenderWindow& window);//adjscreen
 void drawMenu(RenderWindow& window, Font& font);
 int handleSkinInput(Event event);
 void drawSkinMenu(RenderWindow& window, Font& font);
 int handleMapInput(Event event);
+void drawMapMenu(RenderWindow& window, Font& font);
+void loadMenuImage();
+void loadMenuSounds();
+extern Sound escapeSound;
+extern SoundBuffer escapeSoundBuffer;
+extern  SoundBuffer restartSoundBuffer;
+extern Sound restartSound;
+extern Sound playSound;
