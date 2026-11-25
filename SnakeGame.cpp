@@ -20,11 +20,31 @@ int score = 0;
 int highScore = 0;
 bool gameOver = false;
 Clock movementClock;
+
+Clock shieldClock;
+Clock poisonSpawnClock;
+Clock shieldSpawnClock;
+Clock poisonLifeClock;
+Clock shieldLifeClock;
+float poisonSpawnTime = 20;
+float shieldSpawnTime = 25;
+
 Texture appleTexture;
 Sprite appleSprite;
+Texture poisonTexture;
+Sprite poisonSprite;
+Texture shieldTexture;
+Sprite shieldSprite;
+bool poisonPresent = false;
+bool shieldPresent = false;
+bool shieldActive = false;
+float nextPoisonSpawn = 0;
+float nextShieldSpawn = 0;
+
 Texture instructionsTexture;
 Sprite instructionsBackground;
 Texture backgroundTexture;
+
 Texture snakeHeadTexture;
 Texture snakeBodyTexture;
 Texture skinMenuTexture;
