@@ -49,6 +49,14 @@ Texture snakeHeadTexture;
 Texture snakeBodyTexture;
 Texture skinMenuTexture;
 Sprite skinMenuBackground;
+
+Texture mapMenuTexture;
+Sprite mapMenuBackground;
+Texture grassPreviewTexture;
+Texture desertPreviewTexture;
+Texture retroPreviewTexture;
+Sprite mapPreviewSprite;
+int selectedMap = 0;
 void loadInstructionsBackground()
 {
     if (!instructionsTexture.loadFromFile("assets/Instructions.png"))
@@ -82,10 +90,72 @@ void loadAppleTexture()
 
     appleSprite.setTexture(appleTexture);
 }
+void loadMapMenuBackground()
+{
+    mapMenuTexture.loadFromFile("assets/mapmenu.png");
+
+    mapMenuBackground.setTexture(mapMenuTexture);
+
+    mapMenuBackground.setScale(
+        800.0f / mapMenuTexture.getSize().x,
+        600.0f / mapMenuTexture.getSize().y
+    );
+}
+void loadMapPreviewImages()
+{
+    grassPreviewTexture.loadFromFile("assets/grassmap.png");
+
+    desertPreviewTexture.loadFromFile("assets/desertmap.png");
+
+    retroPreviewTexture.loadFromFile("assets/retromap.png");
+}
+void drawMapPreview(RenderWindow& window)
+{
+  window.clear();
+
+    // Draw map selection background
+    window.draw(mapMenuBackground);
+
+    // Select the appropriate map image
+    if (selectedMap == 0)
+    {
+        mapPreviewSprite.setTexture(grassPreviewTexture);
+    }
+    else if (selectedMap == 1)
+    {
+        mapPreviewSprite.setTexture(desertPreviewTexture);
+    }
+    else if (selectedMap == 2)
+    {
+        mapPreviewSprite.setTexture(retroPreviewTexture);
+    }
+
+    // Reset the sprite scale
+    mapPreviewSprite.setScale(1.0f, 1.0f);
+
+    // Get the original image dimensions
+    float imageWidth = mapPreviewSprite.getTexture()->getSize().x;
+    float imageHeight = mapPreviewSprite.getTexture()->getSize().y;
+
+    // Preview box dimensions
+    float previewWidth = 400;
+    float previewHeight = 240;
+
+    // Scale image to fit the preview box
+    mapPreviewSprite.setScale(
+        previewWidth / imageWidth,
+        previewHeight / imageHeight
+    );
+
+    // Position the preview image
+    mapPreviewSprite.setPosition(200, 177);
+    window.draw(mapPreviewSprite);
+    window.display();
+}
 void drawSkinPreview(RenderWindow& window)
 { window.clear();
 
-    // Draw the skin menu background
+ 
     window.draw(skinMenuBackground);
 
     Sprite previewSnake;
