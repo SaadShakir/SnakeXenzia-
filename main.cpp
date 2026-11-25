@@ -34,7 +34,7 @@ loadGameOverSounds();
 loadBackgroundMusic();
 
 
-    int currentScreen = 0; // 0 = menu, 1 = skins, 2 = instructions, 3 = game, 4= gameover, 5=map 
+    int currentScreen = 0; // 0 = menu, 1 = instructions , 2 = skins, 3 = game, 4= gameover, 5=map 
 
     while (window.isOpen()) {
         Event event;
