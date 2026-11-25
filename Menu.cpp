@@ -19,6 +19,40 @@ void loadMenuImage()
                           600.0f / menuTexture.getSize().y);
     }
 }
+SoundBuffer selectSoundBuffer;
+SoundBuffer confirmSoundBuffer;
+SoundBuffer escapeSoundBuffer;
+SoundBuffer playSoundBuffer;
+SoundBuffer restartSoundBuffer;
+Sound selectSound;
+Sound confirmSound;
+Sound escapeSound;
+Sound playSound;
+Sound restartSound;
+void loadMenuSounds()
+{
+    if (!selectSoundBuffer.loadFromFile("assets/selectmenu.wav"))
+        cout << "Failed to load menu selection sound!" << endl;
+
+    if (!confirmSoundBuffer.loadFromFile("assets/confirmmenu.wav"))
+        cout << "Failed to load menu confirmation sound!" << endl;
+    
+        if (!escapeSoundBuffer.loadFromFile("assets/escape.wav"))
+        cout << "Failed to load escape sound!" << endl;
+    
+        if (!playSoundBuffer.loadFromFile("assets/play.mp3"))
+        cout << "Failed to load play sound!" << endl;
+
+        if (!restartSoundBuffer.loadFromFile("assets/restart.mp3.mpeg"))
+        cout << "Failed to load restart sound!" << endl;
+
+
+    selectSound.setBuffer(selectSoundBuffer);
+    confirmSound.setBuffer(confirmSoundBuffer);
+    escapeSound.setBuffer(escapeSoundBuffer);
+    playSound.setBuffer(playSoundBuffer);
+    restartSound.setBuffer(restartSoundBuffer);
+}
 int selectedOption = -1;
 
 // Main menu mouse input
