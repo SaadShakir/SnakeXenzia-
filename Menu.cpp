@@ -154,6 +154,44 @@ int handleSkinInput(Event event)
 
     return -1;}
 
+int selectedMapOption = 0;
+int handleMapInput(Event event)
+{
+  
+    if (event.type != Event::KeyPressed)
+        return -1;
+
+    if (event.key.code == Keyboard::Left)
+    {
+        selectedMapOption--;
+        selectSound.play();
+
+        if (selectedMapOption < 0)
+            selectedMapOption = 2;
+
+        setSelectedMap(selectedMapOption);
+    }
+
+    else if (event.key.code == Keyboard::Right)
+    {
+        selectedMapOption++;
+        selectSound.play();
+
+        if (selectedMapOption > 2)
+            selectedMapOption = 0;
+
+        setSelectedMap(selectedMapOption);
+    }
+
+    else if (event.key.code == Keyboard::Enter)
+    {
+        confirmSound.play();
+        return selectedMapOption;
+    }
+
+    return -1;
+
+}
 
 
 
