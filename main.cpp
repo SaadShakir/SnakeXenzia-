@@ -15,7 +15,7 @@ int main() {
     window.setFramerateLimit(60);
 
     Font font;
-    if (!font.loadFromFile("assets/arial.ttf")) {
+    if (!font.loadFromFile("assets/BlackOpsOne-Regular.ttf")) {
         cout << "Font file was not found. Check the assets folder." << endl;
         return 1;
     }
