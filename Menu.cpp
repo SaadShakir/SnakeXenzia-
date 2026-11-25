@@ -68,6 +68,7 @@ int handleMenuInput(Event event)
         if (mouseX >= 250 && mouseX <= 550 &&
             mouseY >= 190 && mouseY <= 240)
         {
+            playSound.play();
             return MENU_PLAY;
         }
 
@@ -75,6 +76,7 @@ int handleMenuInput(Event event)
         else if (mouseX >= 250 && mouseX <= 550 &&
                  mouseY >= 255 && mouseY <= 300)
         {
+            confirmSound.play();
             return MENU_SKINS;
         }
 
@@ -82,6 +84,7 @@ int handleMenuInput(Event event)
         else if (mouseX >= 250 && mouseX <= 550 &&
                  mouseY >= 315 && mouseY <= 365)
         {
+            confirmSound.play();
             return MENU_MAPS;
         }
 
@@ -89,6 +92,7 @@ int handleMenuInput(Event event)
         else if (mouseX >= 250 && mouseX <= 550 &&
                  mouseY >= 380 && mouseY <= 430)
         {
+            confirmSound.play();
             return MENU_INSTRUCTIONS;
         }
 
@@ -96,6 +100,7 @@ int handleMenuInput(Event event)
         else if (mouseX >= 250 && mouseX <= 550 &&
                  mouseY >= 445 && mouseY <= 495)
         {
+            confirmSound.play();
             return MENU_EXIT;
         }
     }
@@ -120,6 +125,7 @@ int handleSkinInput(Event event)
     if (event.key.code == Keyboard::Left)
     {
         selectedSkinOption--;
+        selectSound.play();
 
         if (selectedSkinOption < 0)
             selectedSkinOption = 3;
@@ -131,6 +137,7 @@ int handleSkinInput(Event event)
     else if (event.key.code == Keyboard::Right)
     {
         selectedSkinOption++;
+        selectSound.play();
 
         if (selectedSkinOption > 3)
             selectedSkinOption = 0;
@@ -141,6 +148,7 @@ int handleSkinInput(Event event)
 
     else if (event.key.code == Keyboard::Enter)
     {
+        confirmSound.play();
         return selectedSkinOption;
     }
 
