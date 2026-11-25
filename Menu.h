@@ -16,3 +16,4 @@ int handleMenuInput(Event event);
 void drawMenu(RenderWindow& window, Font& font);
 int handleSkinInput(Event event);
 void drawSkinMenu(RenderWindow& window, Font& font);
+int handleMapInput(Event event);
