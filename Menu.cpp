@@ -1,8 +1,8 @@
 #include "Menu.h"
 #include <iostream>
 #include "SnakeGame.h"
-using namespace std;
 using namespace sf;
+using namespace std;
 
 Texture menuTexture;
 Sprite menuSprite;
@@ -53,16 +53,21 @@ void loadMenuSounds()
     playSound.setBuffer(playSoundBuffer);
     restartSound.setBuffer(restartSoundBuffer);
 }
+
+
 int selectedOption = -1;
 
 // Main menu mouse input
-int handleMenuInput(Event event)
+int handleMenuInput(Event event, RenderWindow& window)//adjscreens
 {
     if (event.type == Event::MouseButtonPressed &&
         event.mouseButton.button == Mouse::Left)
     {
-        int mouseX = event.mouseButton.x;
-        int mouseY = event.mouseButton.y;
+        Vector2i mousePosition = Mouse::getPosition(window);//adjscreen
+        Vector2f adjustedPosition = window.mapPixelToCoords(mousePosition);//adjscreen
+
+        int mouseX = adjustedPosition.x;//adjscreen
+        int mouseY = adjustedPosition.y;//adjscreen
 
         // Play Game
         if (mouseX >= 250 && mouseX <= 550 &&
@@ -116,6 +121,7 @@ void drawMenu(RenderWindow& window, Font& font)
 
     window.display();
 }
+
 int selectedSkinOption = 0;
 int handleSkinInput(Event event)
 {
@@ -153,6 +159,9 @@ int handleSkinInput(Event event)
     }
 
     return -1;}
+
+
+
 
 int selectedMapOption = 0;
 int handleMapInput(Event event)
@@ -192,6 +201,8 @@ int handleMapInput(Event event)
     return -1;
 
 }
+
+
 
 
 
